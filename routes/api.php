@@ -20,5 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('menus', MenuController::class);
+Route::apiResource('menu', MenuController::class);
+// In api.php
+Route::get('/menu-qr/{menu}', [MenuController::class, 'generateQRCode']);
+
 //Route::get('/menus', [MenuController::class, 'index']);

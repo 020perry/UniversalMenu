@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class MenuController extends Controller
 {
@@ -25,12 +27,13 @@ class MenuController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function generateQRCode(Menu $menu)
     {
-        //
+        // Zorg ervoor dat deze route verwijst naar de publieke pagina voor het tonen van het menu
+        $url = route('menu.show', $menu);
+        $url = str_replace('/api', '', $url); // Verwijder '/api' uit de URL
+        // Genereer de QR-code
+        return QrCode::size(300)->generate($url);
     }
 
     /**

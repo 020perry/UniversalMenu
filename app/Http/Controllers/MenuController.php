@@ -13,6 +13,7 @@ class MenuController extends Controller
         $menus = Menu::with('menuItems')->get();
         return view('menu.index', compact('menus'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -32,9 +33,16 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Menu $menu)
     {
-        //
+        // Zorg ervoor dat gerelateerde menu-items worden opgehaald
+        $menu->load('menuItems');
+
+        // Je kunt hier extra logica toevoegen indien nodig
+        // Bijvoorbeeld, verificaties of specifieke data manipulaties
+
+        // Stuur het menu object naar de Blade view
+        return view('menu.show', compact('menu'));
     }
 
     /**

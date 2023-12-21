@@ -18,3 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/menu', [MenuController::class, 'index']);
+// In web.php, niet api.php omdat het een publieke pagina is
+Route::get('/menu/{menu}', [MenuController::class, 'show']);
+//Route::get('/menu/{menu}', 'MenuController@show')->name('menu.show');
