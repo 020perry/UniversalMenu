@@ -13,8 +13,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        // Haal alle menu's op
-        $menus = Menu::all();
+        $menus = Menu::with('menuItems')->get();
         return response()->json($menus);
     }
 
