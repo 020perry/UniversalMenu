@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -9,7 +10,8 @@ class MenuController extends Controller
     public function index()
     {
         // Render de hoofdpagina van je SPA
-        return view('menu.index');
+        $menus = Menu::with('menuItems')->get();
+        return view('menu.index', compact('menus'));
     }
     /**
      * Show the form for creating a new resource.

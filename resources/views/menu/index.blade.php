@@ -8,7 +8,6 @@
     <!-- Menu name -->
     <h1 class="text-3xl font-bold mb-4 text-center">Menu</h1>
 
-
     <div class="flex flex-wrap justify-center mb-4">
 
         <!-- Filter by category -->
@@ -24,58 +23,24 @@
 
             <!-- Menu items -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    <div class="menu-item-container  bg-base-200 rounded-md shadow-md transition duration-300 transform hover:shadow-2xl flex flex-col">
-                        <div class="mb-4">
-                            <figure>
-                                <img src="" alt="" class="w-full h-32 object-cover rounded-t-md">
-                            </figure>
+                @foreach ($menus as $menu)
+                    @foreach ($menu->menuItems as $item)
+                        <div class="menu-item-container bg-base-200 rounded-md shadow-md transition duration-300 transform hover:shadow-2xl flex flex-col">
+                            <div class="mb-4">
+                                <figure>
+                                    <!-- Plaats hier de afbeeldingsbron als je die hebt. -->
+                                    <img src="{{ $item->image ?? 'default-image-path.jpg' }}" alt="{{ $item->name }}" class="w-full h-32 object-cover rounded-t-md">
+                                </figure>
+                            </div>
+                            <h2 class="card-title p-1">{{ $item->name }}</h2>
+                            <p class="p-1">{{ $item->price }}</p>
+                            <p class="p-1">{{ $item->description }}</p>
                         </div>
-                        <h2 class="card-title p-1">testname name</h2>
-                        <p class="p-1">34 price</p>
-                        <p class="p-1">test description</p>
-                    </div>
-
-                <!-- Click here to open new container to add new menu items -->
-                <div class="menu-item-container  bg-base-200 rounded-md shadow-md transition duration-300 transform hover:shadow-2xl flex flex-col justify-center items-center text-center">
-                    <div class="mb-4">
-                        <!-- Hier kun je een pictogram of tekst toevoegen om aan te geven dat er geklikt kan worden -->
-                        <p class="text-gray-500 cursor-pointer hover:text-primary">Click here to add new item</p>
-                    </div>
-                </div>
-
-                <!-- Create new menu items, show this after the create new item is clicked -->
-                <div class="menu-item-container  bg-base-200 rounded-md shadow-md transition duration-300 transform hover:shadow-2xl flex flex-col">
-                    <div class="menu-item-container  bg-base-200 rounded-md shadow-md transition duration-300 transform hover:shadow-2xl flex flex-col">
-                        <div class="mb-4">
-                            <figure>
-                                <label for="image" class="upload-label">
-                                    <img src="{{ URL::to('/assets/icons8-upload-image-80.png') }}"  class="w-full h-32 object-cover rounded-t-md cursor-pointer">
-                                </label>
-                                <input type="file" name="image" id="image" accept="image/*" style="display: none;">
-                            </figure>
-
-                        </div>
-                        <h2 class="card-title p-1">
-                            <input type="text" placeholder="name" class="w-full p-1 rounded-md">
-                        </h2>
-                        <p class="p-1">
-                            <input type="number" placeholder="price" class="w-full p-1 rounded-md">
-                        </p>
-                        <p class="p-1">
-                            <textarea placeholder="description" class="w-full p-1 rounded-md"></textarea>
-                        </p>
-                    </div>
-                </div>
-
-
-
-
-
-
+                    @endforeach
+                @endforeach
             </div>
-
-
         </div>
+
 
         <div class="max-w-md mx-2">
             <!-- QR Code -->
@@ -93,10 +58,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 
 @endsection
